@@ -1,31 +1,27 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
-
-
-
-
+import Character from "./Character";
 
 const Characters = () => {
-
-
   const fetchCharacters = async () => {
     const response = await fetch("https://rickandmortyapi.com/api/character");
     return response.json();
-
   };
 
- const {data, status}= useQuery("characters", fetchCharacters);
+  const { data, status } = useQuery("characters", fetchCharacters);
 
-  if (status === "loading") {return<div> loading...</div>}
-  if (status === "error") {return<div> error...</div>}
+  if (status === "loading") {
+    return <div> loading...</div>;
+  }
+  if (status === "error") {
+    return <div> error...</div>;
+  }
 
-
- 
   return (
-    <div>
+    <div className="characters">
       {data.results.map((character) => (
-        <div key={character.name}>{character.name}</div>
+        <Character key={character.id} character={character} />
       ))}
     </div>
   );
