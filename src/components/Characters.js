@@ -13,7 +13,7 @@ const Characters = () => {
     return response.json();
   };
 
-  const { data, status, isPreviousData } = useQuery(
+  const { data, status, isPreviousData, isLoading, isError } = useQuery(
     ["characters", page],
     fetchCharacters,
     {
@@ -21,13 +21,13 @@ const Characters = () => {
     }
   );
 
-  console.log(isPreviousData);
+  
 
-  if (status === "loading") {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (status === "error") {
+  if (isError) {
     return <div>Error</div>;
   }
 
