@@ -1,17 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import Characters from './components/Characters';
+import "./App.css";
+import Characters from "./components/Characters";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 
+
+
+
+
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <div className="App">
-      <Characters/>
-      
-      
+      <QueryClientProvider client={queryClient}>
+        <Characters />
+      </QueryClientProvider>
     </div>
   );
 }
-
 export default App;
